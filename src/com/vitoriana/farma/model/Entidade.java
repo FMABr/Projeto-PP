@@ -1,8 +1,8 @@
 package com.vitoriana.farma.model;
 
-import java.io.Serializable;
+import java.util.Random;
 
-public abstract class Entidade implements Serializable {
+public abstract class Entidade {
 
 	private int id;
 
@@ -11,6 +11,11 @@ public abstract class Entidade implements Serializable {
 	}
 
 	public int getId() {
-		return id;
+		if (id == 0) {
+			Random random = new Random();
+			return (random.nextInt(999));
+		} else {
+			return id;
+		}
 	}
 }

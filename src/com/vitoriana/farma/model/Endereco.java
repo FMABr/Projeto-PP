@@ -1,7 +1,6 @@
 package com.vitoriana.farma.model;
 
 public class Endereco {
-
 	private String cep;
 	private String bairro;
 	private String rua;
@@ -11,13 +10,20 @@ public class Endereco {
 	public Endereco() {
 	}
 
-	public Endereco(String cep, String bairro, String rua, String complemento,
-			int numero) {
+	public Endereco(String cep, String bairro, String rua, String complemento, int numero) {
 		this.cep = cep;
 		this.bairro = bairro;
 		this.rua = rua;
 		this.complemento = complemento;
 		this.numero = numero;
+	}
+
+	public Endereco(String cep, String bairro, String rua, int numero) {
+		this.cep = cep;
+		this.bairro = bairro;
+		this.rua = rua;
+		this.numero = numero;
+		complemento = null;
 	}
 
 	public String getCep() {
@@ -58,5 +64,14 @@ public class Endereco {
 
 	public void setNumero(int numero) {
 		this.numero = numero;
+	}
+
+	public void mostrarEndereco() {
+		System.out.println("<Endereco>");
+		System.out.println("Cep: " + cep);
+		System.out.println("Bairro: " + bairro);
+		System.out.println("Rua: " + rua);
+		System.out.println("Complemento: " + complemento);
+		System.out.println("N�mero: " + numero);
 	}
 }
