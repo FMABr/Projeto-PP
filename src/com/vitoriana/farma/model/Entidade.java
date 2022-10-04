@@ -18,4 +18,9 @@ public abstract class Entidade {
 			return id;
 		}
 	}
+	
+	@Override
+	public String toString() {
+		return "<" + this.getClass().getSimpleName() + ":" + id + ">";
+	}
 }
