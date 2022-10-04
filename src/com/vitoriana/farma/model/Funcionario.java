@@ -64,7 +64,7 @@ public class Funcionario extends Entidade {
 	}
 
 	public void mostrarFuncionario() {
-		if (administrador = true) {
+		if (isAdministrador == true) {
 			System.out.println("\n<Funcionario>");
 			System.out.println("ID: " + getId());
 			System.out.println("Nome: " + nome);
