@@ -2,6 +2,8 @@ package com.vitoriana.farma.model;
 
 public class Medicamento extends Item {
 
+	private static final long serialVersionUID = 8428414561792790854L;
+
 	private MedicamentoCategoria mcategoria;
 	private Prescricao prescricao;
 

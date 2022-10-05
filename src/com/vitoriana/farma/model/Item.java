@@ -2,6 +2,8 @@ package com.vitoriana.farma.model;
 
 public class Item extends Entidade {
 
+	private static final long serialVersionUID = 5239308963818507111L;
+	
 	private String nome;
 	private String localizacao;
 	private int quantidade;

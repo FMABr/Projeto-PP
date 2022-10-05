@@ -1,6 +1,9 @@
 package com.vitoriana.farma.model;
 
 public class Funcionario extends Entidade {
+
+	private static final long serialVersionUID = 2997191113890560251L;
+	
 	private String nome;
 	private String matricula;
 	private boolean administrador;

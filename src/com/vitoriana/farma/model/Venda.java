@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;;
 
 public class Venda extends Entidade {
+
+	private static final long serialVersionUID = 2290765111126281137L;
+	
 	private LocalDateTime dataHora;
 	private ArrayList<Item> produtos;
 	private double precoTotal;

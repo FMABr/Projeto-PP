@@ -1,6 +1,9 @@
 package com.vitoriana.farma.model;
 
 public class Cliente extends Entidade {
+
+	private static final long serialVersionUID = 2705434510081850451L;
+	
 	private String nome;
 	private String cpf;
 	private Endereco endereco;

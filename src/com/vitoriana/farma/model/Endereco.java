@@ -1,6 +1,11 @@
 package com.vitoriana.farma.model;
 
-public class Endereco {
+import java.io.Serializable;
+
+public class Endereco implements Serializable {
+	
+	private static final long serialVersionUID = -7873021416773021966L;
+	
 	private String cep;
 	private String bairro;
 	private String rua;
@@ -67,7 +72,6 @@ public class Endereco {
 	}
 
 	public void mostrarEndereco() {
-		System.out.println(this);
 		System.out.println("Cep: " + cep);
 		System.out.println("Bairro: " + bairro);
 		System.out.println("Rua: " + rua);

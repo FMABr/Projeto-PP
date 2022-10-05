@@ -1,8 +1,11 @@
 package com.vitoriana.farma.model;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public abstract class Entidade {
+public abstract class Entidade implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private int id;
 
