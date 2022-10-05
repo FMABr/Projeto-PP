@@ -6,8 +6,6 @@ import java.time.LocalDateTime;
 public class Exemplo {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
 		Endereco endereco1 = new Endereco("123", "Alvorada", "Anjo", 3);
 
 		Cliente cliente1 = new Cliente(12, "Asunder", "922", endereco1);

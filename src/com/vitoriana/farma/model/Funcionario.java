@@ -64,20 +64,10 @@ public class Funcionario extends Entidade {
 	}
 
 	public void mostrarFuncionario() {
-		if (isAdministrador == true) {
-			System.out.println("\n<Funcionario>");
-			System.out.println("ID: " + getId());
-			System.out.println("Nome: " + nome);
-			System.out.println("Matricula: " + matricula);
-			System.out.println("Administrador: Sim");
-			System.out.println("Senha: " + senha);
-		} else {
-			System.out.println("\n<Funcionario>");
-			System.out.println("ID: " + getId());
-			System.out.println("Nome: " + nome);
-			System.out.println("Matricula: " + matricula);
-			System.out.println("Administrador: N�o");
-			System.out.println("Senha: " + senha);
-		}
+		System.out.println(this);
+		System.out.println("ID: " + getId());
+		System.out.println("Nome: " + nome);
+		System.out.println("Matricula: " + matricula);
+		System.out.println("Administrador: " + (administrador ? "Sim" : "Não"));
 	}
 }

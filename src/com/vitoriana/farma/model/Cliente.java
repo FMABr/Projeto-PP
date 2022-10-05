@@ -52,7 +52,7 @@ public class Cliente extends Entidade {
 	}
 
 	public void mostrarCliente() {
-		System.out.println("\n<Cliente>");
+		System.out.println(this);
 		System.out.println("Nome: " + nome);
 		System.out.println("Cpf: " + cpf);
 		System.out.println("ID: " + getId());

@@ -103,10 +103,10 @@ public class Item extends Entidade {
 	}
 
 	public void mostrarItem() {
-		System.out.println("\n<Item>");
+		System.out.println(this);
 		System.out.println("ID: " + getId());
 		System.out.println("Nome: " + nome);
-		System.out.println("Localiza��o: " + localizacao);
+		System.out.println("Localizacao: " + localizacao);
 		System.out.println("Quantidade: " + quantidade);
 		System.out.println("Fornecedor: " + fornecedor.getNome());
 		System.out.println("Categoria: " + categoria);

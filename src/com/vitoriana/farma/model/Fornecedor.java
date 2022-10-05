@@ -1,15 +1,15 @@
 package com.vitoriana.farma.model;
 
-public class Fornecedor extends Entidade{
+public class Fornecedor extends Entidade {
 
 	private String nome;
 	private String contato;
 
-	public Fornecedor(){
+	public Fornecedor() {
 		super(0);
 	}
-	
-	public Fornecedor(int id){
+
+	public Fornecedor(int id) {
 		super(id);
 	}
 
@@ -18,11 +18,11 @@ public class Fornecedor extends Entidade{
 		this.nome = nome;
 		this.contato = contato;
 	}
-	
-	public Fornecedor(int id, String nome, String contato){
+
+	public Fornecedor(int id, String nome, String contato) {
 		super(id);
-		this.nome=nome;
-		this.contato=contato;
+		this.nome = nome;
+		this.contato = contato;
 	}
 
 	public String getNome() {
@@ -40,10 +40,11 @@ public class Fornecedor extends Entidade{
 	public void setContato(String contato) {
 		this.contato = contato;
 	}
-	public void mostrarFornecedor(){
-		System.out.println("\n<Fornecedor>");
-		System.out.println("ID: "+getId());
-		System.out.println("Nome: "+nome);
-		System.out.println("Contato: "+contato);
+
+	public void mostrarFornecedor() {
+		System.out.println(this);
+		System.out.println("ID: " + getId());
+		System.out.println("Nome: " + nome);
+		System.out.println("Contato: " + contato);
 	}
 }

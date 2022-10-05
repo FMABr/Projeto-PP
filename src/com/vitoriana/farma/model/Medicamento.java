@@ -44,7 +44,7 @@ public class Medicamento extends Item {
 	}
 
 	public void mostrarMedicamento() {
-		System.out.println("\n<Item>");
+		System.out.println(this);
 		System.out.println("ID: " + getId());
 		System.out.println("Nome: " + getNome());
 		System.out.println("Localizacao: " + getLocalizacao());

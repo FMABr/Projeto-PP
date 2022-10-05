@@ -67,11 +67,11 @@ public class Endereco {
 	}
 
 	public void mostrarEndereco() {
-		System.out.println("<Endereco>");
+		System.out.println(this);
 		System.out.println("Cep: " + cep);
 		System.out.println("Bairro: " + bairro);
 		System.out.println("Rua: " + rua);
 		System.out.println("Complemento: " + complemento);
-		System.out.println("N�mero: " + numero);
+		System.out.println("Numero: " + numero);
 	}
 }
