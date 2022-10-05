@@ -5,36 +5,36 @@ import java.util.Collection;
 import com.vitoriana.farma.model.Entidade;
 import com.vitoriana.farma.model.Venda;
 
-public class VendaService implements EntidadeService {
+public class VendaService implements EntidadeService<Venda> {
 
 	private SerializationService<Venda> serializador = SerializationService.of(Venda.class);
-	
+
 	@Override
-	public Entidade registrar(Entidade entidade) {
+	public Venda registrar(Venda entidade) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Collection<Entidade> listar(Entidade entidade) {
+	public Collection<Venda> listar() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Entidade atualizar(Entidade entidade) {
+	public Venda atualizar(Venda entidade) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Entidade buscar(Entidade entidade) {
+	public Venda buscar(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Entidade deletar(Entidade entidade) {
+	public Venda deletar(Venda entidade) {
 		// TODO Auto-generated method stub
 		return null;
 	}

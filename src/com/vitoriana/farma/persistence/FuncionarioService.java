@@ -2,39 +2,38 @@ package com.vitoriana.farma.persistence;
 
 import java.util.Collection;
 
-import com.vitoriana.farma.model.Entidade;
 import com.vitoriana.farma.model.Funcionario;
 
-public class FuncionarioService implements EntidadeService {
+public class FuncionarioService implements EntidadeService<Funcionario> {
 
 	private SerializationService<Funcionario> serializador = SerializationService.of(Funcionario.class);
-	
+
 	@Override
-	public Entidade registrar(Entidade entidade) {
+	public Funcionario registrar(Funcionario entidade) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Collection<Entidade> listar(Entidade entidade) {
+	public Collection<Funcionario> listar() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Entidade atualizar(Entidade entidade) {
+	public Funcionario atualizar(Funcionario entidade) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Entidade buscar(Entidade entidade) {
+	public Funcionario buscar(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Entidade deletar(Entidade entidade) {
+	public Funcionario deletar(Funcionario entidade) {
 		// TODO Auto-generated method stub
 		return null;
 	}

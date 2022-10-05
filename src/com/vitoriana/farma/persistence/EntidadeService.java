@@ -4,10 +4,10 @@ import java.util.Collection;
 
 import com.vitoriana.farma.model.Entidade;
 
-public interface EntidadeService {
-	public abstract Entidade registrar(Entidade entidade);
-	public abstract Collection<Entidade> listar(Entidade entidade);
-	public abstract Entidade atualizar(Entidade entidade);
-	public abstract Entidade buscar(Entidade entidade);
-	public abstract Entidade deletar(Entidade entidade);
+public interface EntidadeService<E extends Entidade> {
+	public abstract E registrar(E entidade);
+	public abstract Collection<E> listar();
+	public abstract E atualizar(E entidade);
+	public abstract E buscar(int id);
+	public abstract E deletar(E entidade);
 }

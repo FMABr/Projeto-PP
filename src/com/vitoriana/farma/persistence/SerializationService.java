@@ -4,15 +4,20 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
 
 import com.vitoriana.farma.model.Entidade;
 
 public class SerializationService<E extends Entidade> {
 
 	private String diretorio;
-	
+
 	public SerializationService(String diretorio) {
 		this.diretorio = diretorio;
 	}
@@ -31,23 +36,41 @@ public class SerializationService<E extends Entidade> {
 			return false;
 		}
 	}
-	
+
+
 	@SuppressWarnings("unchecked")
-	public E desserializar(int id) {
-		File file = new File(getCaminho(id));
-		E entidade = null;
+	public E[] desserializarTodos() {
+		E[] entidades = null;
 		
-		if (file.isFile() && file.canRead()) {
-			try (var fileInStream = new FileInputStream(getCaminho(id));
-					var objInStream = new ObjectInputStream(fileInStream);) {
-				
-				entidade = (E) objInStream.readObject();
-				
-			} catch (Exception ex) {
-				System.err.println(ex.getMessage());
-			} 
+		try(Stream<Path> paths = Files.walk(Paths.get(diretorio))) {
+			entidades = (E[]) paths.filter(Files::isRegularFile).map(path -> this.desserializar(path)).toArray();
+		} catch (IOException ex) {
+			System.err.println(ex.getMessage());
 		}
 		
+		return entidades;
+	}
+
+	public E desserializar(int id) {
+		return desserializar(Path.of(getCaminho(id)));
+	}
+	
+	@SuppressWarnings("unchecked")
+	private E desserializar(Path path) {
+		File file = path.toFile();
+		E entidade = null;
+
+		if (file.isFile() && file.canRead()) {
+			try (var fileInStream = new FileInputStream(path.toString());
+					var objInStream = new ObjectInputStream(fileInStream);) {
+
+				entidade = (E) objInStream.readObject();
+
+			} catch (Exception ex) {
+				System.err.println(ex.getMessage());
+			}
+		}
+
 		return entidade;
 	}
 
@@ -55,11 +78,12 @@ public class SerializationService<E extends Entidade> {
 		int id = entidade.getId();
 
 		File file = new File(getCaminho(id));
-		
-		if(!file.exists()) throw new FileNotFoundException("A Entidade " + entidade + " não existe");
-		
-		if(file.delete()) {
-			System.out.println("Entidade deletada com sucesso");
+
+		if (!file.exists())
+			throw new FileNotFoundException("A Entidade " + entidade + " não existe.");
+
+		if (file.delete()) {
+			System.out.println("Entidade " + entidade + " deletada com sucesso.");
 			return true;
 		} else {
 			return false;
