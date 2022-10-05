@@ -12,7 +12,7 @@ import com.vitoriana.farma.model.Entidade;
 public class SerializationService<E extends Entidade> {
 
 	private String diretorio;
-
+	
 	public SerializationService(String diretorio) {
 		this.diretorio = diretorio;
 	}
@@ -69,5 +69,8 @@ public class SerializationService<E extends Entidade> {
 	private String getCaminho(int id) {
 		return this.diretorio + String.valueOf(id);
 	}
-	
+
+	public static <T extends Entidade> SerializationService<T> of(Class<T> type) {
+		return new SerializationService<T>(type.getSimpleName());
+	}
 }
