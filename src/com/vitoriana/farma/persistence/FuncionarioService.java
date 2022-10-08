@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
+
 import com.vitoriana.farma.model.Funcionario;
 
 public class FuncionarioService implements EntidadeService<Funcionario> {
