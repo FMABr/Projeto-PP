@@ -3,7 +3,7 @@ package com.vitoriana.farma.exemplo;
 import com.vitoriana.farma.model.*;
 import java.time.LocalDateTime;
 
-public class Exemplo {
+public class DemonstracaoModel {
 
 	public static void main(String[] args) {
 		Endereco endereco1 = new Endereco("123", "Alvorada", "Anjo", 3);
