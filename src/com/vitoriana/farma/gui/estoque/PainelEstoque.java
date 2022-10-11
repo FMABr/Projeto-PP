@@ -1,7 +1,10 @@
 package com.vitoriana.farma.gui.estoque;
 
-import javax.swing.JFrame;
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 public class PainelEstoque {
 
@@ -9,17 +12,14 @@ public class PainelEstoque {
 
 	public PainelEstoque() {
 		mainPanel = new JPanel();
+
+		JTable table = new JTable(new ItemTableModel(new ArrayList<>(20)));
+		JScrollPane tablePane = new JScrollPane(table);
+
+		mainPanel.add(tablePane);
 	}
 
 	public JPanel getMainPanel() {
 		return mainPanel;
-	}
-
-	public static void main(String[] args) {
-		javax.swing.SwingUtilities.invokeLater(() -> {
-			JFrame frame = new JFrame();
-			PainelEstoque estoque = new PainelEstoque();
-			frame.add(estoque.getMainPanel());
-		});
 	}
 }
