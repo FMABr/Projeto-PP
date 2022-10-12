@@ -4,8 +4,8 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import com.vitoriana.farma.gui.Gerenciador;
-import com.vitoriana.farma.gui.PainelVendas;
 import com.vitoriana.farma.gui.estoque.PainelEstoque;
+import com.vitoriana.farma.gui.vendas.PainelVendas;
 
 public class DemonstracaoGUI {
 
@@ -14,16 +14,17 @@ public class DemonstracaoGUI {
 			JFrame frame = new JFrame();
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.setSize(800, 700);
-			frame.setResizable(false);
+			frame.setLocationRelativeTo(null);
+//			frame.setResizable(false);
 			frame.setVisible(true);
 
 			Gerenciador gerenciadorGUI = new Gerenciador();
 			PainelEstoque estoqueGUI = new PainelEstoque();
 			PainelVendas vendasGUI = new PainelVendas();
-			
+
 			gerenciadorGUI.setEstoquePanel(estoqueGUI.getMainPanel());
 			gerenciadorGUI.setVendasPanel(vendasGUI.getMainPanel());
-			
+
 			frame.add(gerenciadorGUI.getMainPanel());
 		});
 	}

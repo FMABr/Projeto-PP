@@ -45,7 +45,7 @@ public class Gerenciador {
 	private JButton createMenuButton(String value, String tooltip, String card) {
 		JButton button = new JButton(value);
 		button.setToolTipText(tooltip);
-		button.addActionListener((ActionEvent) -> this.showCard(card));
+		button.addActionListener(e -> this.showCard(card));
 
 		return button;
 	}
