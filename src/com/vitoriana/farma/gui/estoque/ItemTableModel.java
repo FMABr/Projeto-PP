@@ -1,5 +1,6 @@
 package com.vitoriana.farma.gui.estoque;
 
+import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,12 +12,17 @@ public class ItemTableModel extends AbstractTableModel {
 
 	private static final long serialVersionUID = 1L;
 
-	private List<Item> tableData;
-	private String[] colunas;
+	protected List<Item> tableData;
+	protected String[] colunas;
 
 	public ItemTableModel(List<Item> tableData) {
-		this.tableData = Collections.synchronizedList(tableData);
+		this.tableData = tableData;
 		this.colunas = new String[]{ "Nome", "Categoria", "Preço", "Quantidade" };
+	}
+	
+	public ItemTableModel(List<Item> tableData, String... colunas) {
+		this.tableData = Collections.synchronizedList(tableData);		
+		this.colunas = colunas;
 	}
 
 	@Override
@@ -32,19 +38,18 @@ public class ItemTableModel extends AbstractTableModel {
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		Item linha = tableData.get(rowIndex);
+		String coluna = colunas[columnIndex];
 
-		Object value = null;
-
-		switch (columnIndex) {
-		case 0:
-			value = linha.getNome();
-		case 1:
-			value = linha.getCategoria();
-		case 2:
-			value = linha.getPreco();
-		case 3:
-			value = linha.getQuantidade();
+		
+		Field value;		
+		try {
+			value = linha.getClass().getField(coluna);
+		} catch (NoSuchFieldException e) {
+			value = null;
+			System.err.println("Coluna não existe: " + coluna);
+			System.err.println(e.getLocalizedMessage());
 		}
+		
 
 		return value;
 	}
