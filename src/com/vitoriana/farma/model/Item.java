@@ -4,13 +4,13 @@ public class Item extends Entidade {
 
 	private static final long serialVersionUID = 5239308963818507111L;
 	
-	private String nome;
-	private String localizacao;
-	private int quantidade;
-	private Fornecedor fornecedor;
-	private ItemCategoria categoria;
-	private double preco;
-	private Funcionario estoquista;
+    private String nome;
+    private String localizacao;
+    private int quantidade;
+    private Fornecedor fornecedor;
+    private ItemCategoria categoria;
+    private double preco;
+    private Funcionario estoquista;
 
 	public Item() {
 		super(0);

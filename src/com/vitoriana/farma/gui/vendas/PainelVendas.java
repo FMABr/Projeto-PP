@@ -40,7 +40,7 @@ public class PainelVendas {
 		itens = Collections.synchronizedList(new ArrayList<>(20));
 		quantidades = Collections.synchronizedMap(new HashMap<>(20));
 
-		JLayeredPane layeredPane = createDesktopPanel();
+		JLayeredPane layeredPane = createDesktopPane();
 
 		mainPanel.add(layeredPane);
 
@@ -68,7 +68,7 @@ public class PainelVendas {
 		return frame;
 	}
 
-	private JDesktopPane createDesktopPanel() {
+	private JDesktopPane createDesktopPane() {
 		JDesktopPane panel = new JDesktopPane();
 
 		// Override dragFrame para evitar que o usuário mova o icone do JInternalFrame

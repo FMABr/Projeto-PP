@@ -22,7 +22,7 @@ public class DemonstracaoGUI {
 			PainelEstoque estoqueGUI = new PainelEstoque();
 			PainelVendas vendasGUI = new PainelVendas();
 
-			gerenciadorGUI.setEstoquePanel(estoqueGUI.getMainPanel());
+            gerenciadorGUI.setEstoquePanel(estoqueGUI.getMainPanel());
 			gerenciadorGUI.setVendasPanel(vendasGUI.getMainPanel());
 
 			frame.add(gerenciadorGUI.getMainPanel());
