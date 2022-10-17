@@ -242,6 +242,7 @@ public class PainelEstoque {
             item.setId(antigo.getId());
 
             if (controller.atualizarItem(modelIndex, item)) {
+                controller.atualizarFornecedor(modelIndex, item.getFornecedor());
                 JOptionPane.showMessageDialog(mainPanel, "Item atualizado com sucesso");
                 tableModel.refresh();
             } else {

@@ -124,6 +124,7 @@ public class PainelVendas {
 
 		JSpinner quantidadeSpinner = new JSpinner(new SpinnerNumberModel(1, 0, 100, 1));
 		JButton adicionarButton = new JButton("Adicionar ao Carrinho");
+		adicionarButton.addActionListener(e -> buscarItem(txt2.getText()));
 
 		bottom.add(quantidadeSpinner);
 		bottom.add(adicionarButton);
@@ -176,6 +177,10 @@ public class PainelVendas {
 		return panel;
 	}
 
+	private void buscarItem(String nome) {
+	    
+	}
+	
 	private void fecharVenda() {
 		// Registrar uma venda nova
 	}
