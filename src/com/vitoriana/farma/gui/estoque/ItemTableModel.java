@@ -6,9 +6,13 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.swing.RowFilter;
 import javax.swing.table.AbstractTableModel;
 
+import com.vitoriana.farma.model.Fornecedor;
+import com.vitoriana.farma.model.Funcionario;
 import com.vitoriana.farma.model.Item;
+import com.vitoriana.farma.model.ItemCategoria;
 
 public class ItemTableModel extends AbstractTableModel {
 
@@ -63,14 +67,16 @@ public class ItemTableModel extends AbstractTableModel {
         Item linha = tableData.get(rowIndex);
         String coluna = colunas[columnIndex];
 
+        Fornecedor fornecedor;
+        Funcionario estoquista;
         String value = switch (coluna) {
             case "Nome" -> linha.getNome();
             case "Categoria" -> linha.getCategoria().name();
             case "Localização" -> linha.getLocalizacao();
             case "Quantidade" -> String.valueOf(linha.getQuantidade());
             case "Preço" -> String.valueOf(linha.getPreco());
-            case "Fornecedor" -> linha.getFornecedor().getNome();
-            case "Estoquista" -> linha.getEstoquista().getNome();
+            case "Fornecedor" -> ((fornecedor = linha.getFornecedor()) != null ? fornecedor.getNome() : "");
+            case "Estoquista" -> ((estoquista = linha.getEstoquista()) != null ? estoquista.getNome() : "");
 
             default -> throw new IllegalArgumentException("Coluna não esperada: " + coluna);
         };
@@ -92,7 +98,33 @@ public class ItemTableModel extends AbstractTableModel {
         return tableData;
     }
 
-    public void addRow(Item item) {
-        tableData.add(item);
+    public Item getRowData(int rowIndex) {
+        return this.tableData.get(rowIndex);
+    }
+
+    public void refresh() {
+        super.fireTableDataChanged();
+    }
+
+    public RowFilter<ItemTableModel, Integer> filtrar(String nome, String localizacao, String fornecedor,
+            ItemCategoria categoria) {
+        RowFilter<ItemTableModel, Integer> filtro = RowFilter.andFilter(List.of(
+                // Não deveriamos usar os indices fixos,
+                // a classe pode ser instanciada com as colunas em qualquer ordem
+                RowFilter.regexFilter(nome, 0), RowFilter.regexFilter(localizacao, 2),
+                RowFilter.regexFilter(fornecedor, 5),
+                categoria == null ? null : RowFilter.regexFilter(categoria.name(), 1)));
+
+        return filtro;
+    }
+
+    public RowFilter<ItemTableModel, Integer> filtrar(String nome, String localizacao, String fornecedor) {
+        RowFilter<ItemTableModel, Integer> filtro = RowFilter.andFilter(List.of(
+                // Não deveriamos usar os indices fixos,
+                // a classe pode ser instanciada com as colunas em qualquer ordem
+                RowFilter.regexFilter(nome, 0), RowFilter.regexFilter(localizacao, 2),
+                RowFilter.regexFilter(fornecedor, 5)));
+
+        return filtro;
     }
 }

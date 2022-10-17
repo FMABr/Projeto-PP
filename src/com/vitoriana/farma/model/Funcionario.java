@@ -10,7 +10,7 @@ public class Funcionario extends Entidade {
 	private String senha;
 
 	public Funcionario() {
-		super(0);
+		super();
 	}
 
 	public Funcionario(int id) {
@@ -18,7 +18,7 @@ public class Funcionario extends Entidade {
 	}
 
 	public Funcionario(String nome, String matricula, boolean administrador, String senha) {
-		super(0);
+		super();
 		this.nome = nome;
 		this.matricula = matricula;
 		this.administrador = administrador;
@@ -31,7 +31,6 @@ public class Funcionario extends Entidade {
 		this.matricula = matricula;
 		this.administrador = administrador;
 		this.senha = senha;
-
 	}
 
 	public String getNome() {

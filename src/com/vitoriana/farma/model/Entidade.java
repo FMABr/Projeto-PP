@@ -1,29 +1,33 @@
 package com.vitoriana.farma.model;
 
 import java.io.Serializable;
-import java.util.Random;
 
 public abstract class Entidade implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private int id;
+    public static int NEXT_ID = 0;
 
-	public Entidade(int id) {
-		this.id = id;
-	}
+    private int id;
 
-	public int getId() {
-		if (id == 0) {
-			Random random = new Random();
-			return (random.nextInt(999));
-		} else {
-			return id;
-		}
-	}
+    public Entidade() {
+        this.id = ++NEXT_ID;
+    }
 
-	@Override
-	public String toString() {
-		return "<" + this.getClass().getSimpleName() + ":" + id + ">";
-	}
+    public Entidade(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "<" + this.getClass().getSimpleName() + ":" + id + ">";
+    }
 }

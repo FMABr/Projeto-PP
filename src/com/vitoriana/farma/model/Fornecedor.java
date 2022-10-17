@@ -2,51 +2,39 @@ package com.vitoriana.farma.model;
 
 public class Fornecedor extends Entidade {
 
-	private static final long serialVersionUID = 830421036236131546L;
-	
-	private String nome;
-	private String contato;
+    private static final long serialVersionUID = 830421036236131546L;
 
-	public Fornecedor() {
-		super(0);
-	}
+    private String nome;
 
-	public Fornecedor(int id) {
-		super(id);
-	}
+    public Fornecedor() {
+        super();
+    }
 
-	public Fornecedor(String nome, String contato) {
-		super(0);
-		this.nome = nome;
-		this.contato = contato;
-	}
+    public Fornecedor(int id) {
+        super(id);
+    }
 
-	public Fornecedor(int id, String nome, String contato) {
-		super(id);
-		this.nome = nome;
-		this.contato = contato;
-	}
+    public Fornecedor(String nome) {
+        super();
+        this.nome = nome;
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    public Fornecedor(int id, String nome) {
+        super(id);
+        this.nome = nome;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public String getContato() {
-		return contato;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public void setContato(String contato) {
-		this.contato = contato;
-	}
-
-	public void mostrarFornecedor() {
-		System.out.println(this);
-		System.out.println("ID: " + getId());
-		System.out.println("Nome: " + nome);
-		System.out.println("Contato: " + contato);
-	}
+    public void mostrarFornecedor() {
+        System.out.println(this);
+        System.out.println("ID: " + getId());
+        System.out.println("Nome: " + nome);
+    }
 }

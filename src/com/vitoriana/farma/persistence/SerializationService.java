@@ -10,91 +10,98 @@ import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 import com.vitoriana.farma.model.Entidade;
 
 public class SerializationService<E extends Entidade> {
 
-	private String diretorio;
+    private String diretorio;
 
-	public SerializationService(String diretorio) {
-		this.diretorio = diretorio;
-	}
+    public SerializationService(String diretorio) {
+        this.diretorio = diretorio;
+        
+    }
+    
+    public int quantidade() {
+        int qtd = new File(this.diretorio).list().length;
 
-	public boolean serializar(E entidade) {
-		int id = entidade.getId();
+        return qtd;
+    }
 
-		try (var fileOutStream = new FileOutputStream(getCaminho(id));
-				var objOutStream = new ObjectOutputStream(fileOutStream);) {
+    public boolean serializar(E entidade) {
+        int id = entidade.getId();
 
-			objOutStream.writeObject(entidade);
+        try (var fileOutStream = new FileOutputStream(getCaminho(id));
+                var objOutStream = new ObjectOutputStream(fileOutStream);) {
 
-			return true;
-		} catch (Exception ex) {
-			System.err.println(ex.getMessage());
-			return false;
-		}
-	}
+            objOutStream.writeObject(entidade);
 
+            return true;
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            return false;
+        }
+    }
 
-	@SuppressWarnings("unchecked")
-	public E[] desserializarTodos() {
-		E[] entidades = null;
-		
-		try(Stream<Path> paths = Files.walk(Paths.get(diretorio))) {
-			entidades = (E[]) paths.filter(Files::isRegularFile).map(path -> this.desserializar(path)).toArray();
-		} catch (IOException ex) {
-			System.err.println(ex.getMessage());
-		}
-		
-		return entidades;
-	}
+    public List<E> desserializarTodos() {
+        List<E> entidades = new ArrayList<>();
 
-	public E desserializar(int id) {
-		return desserializar(Path.of(getCaminho(id)));
-	}
-	
-	@SuppressWarnings("unchecked")
-	private E desserializar(Path path) {
-		File file = path.toFile();
-		E entidade = null;
+        try (Stream<Path> paths = Files.walk(Paths.get(diretorio))) {
+            paths.filter(Files::isRegularFile).forEach(path -> entidades.add(this.desserializar(path)));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
 
-		if (file.isFile() && file.canRead()) {
-			try (var fileInStream = new FileInputStream(path.toString());
-					var objInStream = new ObjectInputStream(fileInStream);) {
+        return entidades;
+    }
 
-				entidade = (E) objInStream.readObject();
+    public E desserializar(int id) {
+        return desserializar(Path.of(getCaminho(id)));
+    }
 
-			} catch (Exception ex) {
-				System.err.println(ex.getMessage());
-			}
-		}
+    @SuppressWarnings("unchecked")
+    private E desserializar(Path path) {
+        File file = path.toFile();
+        E entidade = null;
 
-		return entidade;
-	}
+        if (file.isFile() && file.canRead()) {
+            try (var fileInStream = new FileInputStream(path.toString());
+                    var objInStream = new ObjectInputStream(fileInStream);) {
 
-	public boolean remover(E entidade) throws FileNotFoundException {
-		int id = entidade.getId();
+                entidade = (E) objInStream.readObject();
 
-		File file = new File(getCaminho(id));
+            } catch (Exception ex) {
+                System.err.println(ex.getMessage());
+            }
+        }
 
-		if (!file.exists())
-			throw new FileNotFoundException("A Entidade " + entidade + " não existe.");
+        return entidade;
+    }
 
-		if (file.delete()) {
-			System.out.println("Entidade " + entidade + " deletada com sucesso.");
-			return true;
-		} else {
-			return false;
-		}
-	}
+    public boolean remover(E entidade) throws FileNotFoundException {
+        int id = entidade.getId();
 
-	private String getCaminho(int id) {
-		return this.diretorio + String.valueOf(id);
-	}
+        File file = new File(getCaminho(id));
 
-	public static <T extends Entidade> SerializationService<T> of(Class<T> type) {
-		return new SerializationService<T>(type.getSimpleName());
-	}
+        if (!file.exists())
+            throw new FileNotFoundException("A Entidade " + entidade + " não existe.");
+
+        if (file.delete()) {
+            System.out.println("Entidade " + entidade + " deletada com sucesso.");
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private String getCaminho(int id) {
+        return this.diretorio + "/" + String.valueOf(id);
+    }
+
+    public static <T extends Entidade> SerializationService<T> of(Class<T> type) {
+        return new SerializationService<T>(type.getSimpleName());
+    }
 }

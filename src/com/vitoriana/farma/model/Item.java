@@ -13,7 +13,7 @@ public class Item extends Entidade {
     private Funcionario estoquista;
 
 	public Item() {
-		super(0);
+		super();
 	}
 
 	public Item(int id) {
@@ -22,7 +22,7 @@ public class Item extends Entidade {
 
 	public Item(String nome, String localizacao, int quantidade, Fornecedor fornecedor, ItemCategoria categoria,
 			double preco, Funcionario estoquista) {
-		super(0);
+		super();
 		this.nome = nome;
 		this.localizacao = localizacao;
 		this.quantidade = quantidade;
@@ -98,10 +98,6 @@ public class Item extends Entidade {
 
 	public void setEstoquista(Funcionario estoquista) {
 		this.estoquista = estoquista;
-	}
-
-	public String toString() {
-		return nome;
 	}
 
 	public void mostrarItem() {

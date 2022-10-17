@@ -1,54 +1,54 @@
 package com.vitoriana.farma.persistence;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import com.vitoriana.farma.model.Item;
 
 public class ItemService implements EntidadeService<Item> {
 
-	private SerializationService<Item> serializador = SerializationService.of(Item.class);
+    private SerializationService<Item> serializador = SerializationService.of(Item.class);
 
-	public Item registrar(Item entidade) {
-		Item registrado = serializador.serializar(entidade) ? entidade : null;
-		
-		return registrado;
-	}
+    public Item registrar(Item entidade) {
+        Item registrado = serializador.serializar(entidade) ? entidade : null;
 
-	@Override
-	public Collection<Item> listar() {
-		Item[] Items = serializador.desserializarTodos();
-		
-		return new ArrayList<>(Arrays.asList(Items));
-	}
+        return registrado;
+    }
 
-	@Override
-	public Item atualizar(Item entidade) {
-		Item atualizado = serializador.serializar(entidade) ? entidade : null;
+    @Override
+    public Collection<Item> listar() {
+        List<Item> items = serializador.desserializarTodos();
 
-		return atualizado;
-	}
+        return items;
+    }
 
-	@Override
-	public Item buscar(int id) {
-		Item Item = serializador.desserializar(id);
+    @Override
+    public Item atualizar(Item entidade) {
+        Item atualizado = serializador.serializar(entidade) ? entidade : null;
 
-		return Item;
-	}
+        return atualizado;
+    }
 
-	@Override
-	public Item deletar(Item entidade) {
-		Item deletado = null;
-		try {
-			if (serializador.remover(entidade))
-				deletado = entidade;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+    @Override
+    public Item buscar(int id) {
+        Item item = serializador.desserializar(id);
 
-		return deletado;
-	}
+        return item;
+    }
+
+    @Override
+    public Item deletar(Item entidade) {
+        Item deletado = null;
+
+        try {
+            if (serializador.remover(entidade))
+                deletado = entidade;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return deletado;
+    }
 
 }
